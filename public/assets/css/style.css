@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.navbar{
+    display:flex;
+    align-items: center;
+    padding: 20px;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+}
+nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+a{
+    text-decoration: none;
+    color: #555;
+}
+p{
+    color: #555;
+}
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col-2{
+    flex-basis: 40%;
+    min-width: 300px;
+}
+.col-2 img{
+    max-width: 50%;
+    float: right;
+}
+.col-2 h1{
+    font-size: 40px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+.btn{
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition:background 0.5s;
+}
+.header .row{
+    margin-top: 30px;
+}
+.btn:hover{
+    background:dimgray;
+}
+.categories{
+    margin:70px 0;
+}
+.col-4 img{
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.small-container{
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.col-3{
+    flex-basis: 30%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+}
+.col-3 img{
+    width: 100%;
+}
+.title{
+    text-align: center;
+    margin: 0 auto 30px;
+    position: relative;
+    height: 60px;
+    color: #555;
+}
+.title::after{
+    content: '';
+    background: black;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.col-3{
+    flex-basis: 30%;
+    transition: transform .5s;
+    position: relative;
+    background-color:white;
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+}
+.col-3 img{
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+}
+h4{
+    color: #555;
+    font-weight: normal;
+}
+.col-3 p{
+    font-size: 14px;
+}
+.col-3:hover{
+    transform: translateY(-30px);
+}
+.message{
+    background-color: #555;
+    height: 180px;
+    margin-bottom: 20px;
+}
+.message .head{
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-family: "monospace";
+}
+.subhead{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+}
+.message .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    margin-left: 550px;
+}
+.message .btn:hover{
+    background:white;
+    color: black;
+}
+/*footer*/
+.footer{
+    background: black;
+    color: #555;
+    font-size: 14px;
+    padding: 60px 0 20px;
+}
+.footer h3{
+    color: white;
+    margin-bottom: 20px;
+}
+.footer-col-1, .footer-col-2{
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+.footer-col-1{
+    flex-basis: 50%;
+    text-align: center;
+}
+.footer-col-2{
+    flex: 1;
+    text-align: center;
+}
+ul{
+    list-style-type: none;
+}
+.applogo{
+    margin-top: 20px;
+    flex-basis: 50%;
+}
+.ios img{
+    width: 120px;
+    border-radius: 10px;
+}
+.android img{
+    width: 120px;
+    border-radius: 10px;
+}
+.footer hr{
+    border: none;
+    background: dimgray;
+    height: 1px;
+    margin: 20px 0;
+}
+.copyright{
+    text-align: center;
+}
+.menu-icon{
+    margin-left: 20px;
+    display: none;
+}
+/*media query for menu*/
+@media only screen and (max-width: 800px){
+    nav ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: black;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height0.5s;
+    }
+    nav ul li{
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    nav ul li a{
+        color: white;
+    }
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/*media query for screen size*/
+@media only screen and (max-width: 600px){
+    .row{
+        text-align: center;
+    }
+    .col-2, .col-3, .col-4{
+        flex-basis: 100%;
+    }
+}
+a li{
+    list-style-type: none;
+}
+.logout{
+    margin-left: 10px;
+}
+.fas{
+    margin-left: 10px;
+}
+.fname{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300px;
+}
