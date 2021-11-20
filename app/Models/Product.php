@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
+use Illuminate\Database\Eloquent\Model;
 
-class ProductsModel extends Model
+class Product extends Model
 {
-    protected $table = 'tbl_product';
     protected $primaryKey = 'product_id';
-    protected $useAutoIncrement = true;
-    protected $allowedFields = [
+    protected $table = 'tbl_product';
+
+    protected $fillable = [
         'product_name',
         'product_description',
         'product_image',
         'unit_price',
         'available_quantity',
         'subcategory_id',
-        'created_at',
-        'updated_at',
         'added_by',
         'is_deleted'
     ];
-
 }

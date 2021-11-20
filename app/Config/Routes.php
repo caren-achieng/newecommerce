@@ -95,3 +95,13 @@ $routes->get('/', 'Profiles::index',['filter' => 'authGuard']);
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+
+$routes->group('/admin', ['namespace' => 'App\Controllers\Admin'], function($routes) {
+    //  PRODUCT ROUTES
+    $routes->group('products', function($routes) {
+        $routes->get('/', 'ProductController', ['as' => 'admin.product.index']);
+        $routes->get('create', 'ProductController::create', ['as' => 'admin.product.create']);
+        $routes->post('store', 'ProductController::store', ['as' => 'admin.product.store']);
+    });
+});

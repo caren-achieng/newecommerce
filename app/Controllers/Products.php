@@ -12,9 +12,11 @@ class Products extends BaseController
         $subcategories = new SubcategoryModel();
         $categories = new CategoryModel();
         $products = new ProductsModel();
+
         $data['subcategories'] = $subcategories->findAll();
         $data['categories'] = $categories->findAll();
         $data['products'] = $products->findAll();
+
         echo view('admin/header');
         echo view('admin/css');
         echo view('admin/navtop');
@@ -24,44 +26,45 @@ class Products extends BaseController
         echo view('admin/htmlclose');
     }
 
-    public function store()
-    {
-        dd($this->request->getVar());
-
+    public function store(): bool|string {
         $rules = [
-        'prod_name'=>'required|min_length[1]|max_length[25]',
-        'prod_image'=>'required',
-        'unit_price'=>'required',
-        'stock'=>'required'
+            'prod_name'  => 'required|min_length[1]|max_length[25]',
+            'unit_price' => 'required',
+            'stock'      => 'required'
         ];
 
-        if ($this->validate($rules))
-        {
+        $file = $this->request->getFile('prod_image');
+
+        if(!$file->isValid()) {
+            return json_encode('Please upload a valid image.');
+        }
+
+        $imageName = "pic_" . time() . ".{$file->getClientExtension()}";
+        $file->move(PUBLICPATH . "/images/products/", $imageName);
+
+        if($this->validate($rules)) {
             //store user in DB
             $model = new ProductsModel();
 
             $newData = [
-            'product_name'=>$this->request->getVar('prod_name'),
-            'product_description'=>$this->request->getVar('prod_description'),
-            'product_image'=>$this->request->getVar('prod_image'),
-            'unit_price'=>$this->request->getVar('unit_price'),
-            'available_quantity'=>$this->request->getVar('stock'),
-            'subcategory_name'=> $this->request->getVar('subcategory_name'),
-            'category'=>$this->request->getVar('category')
+                'product_name'        => $this->request->getVar('prod_name'),
+                'product_description' => $this->request->getVar('prod_description'),
+                'product_image'       => $imageName,
+                'unit_price'          => $this->request->getVar('unit_price'),
+                'available_quantity'  => $this->request->getVar('stock'),
             ];
 
             $model->save($newData);
-            $response=[
-                'status'=>true,
-                'url'=>'/products'
+            $response = [
+                'status' => true,
+                'url'    => '/products'
             ];
             return json_encode($response);
-        }
-        else
-        {$firstError=$this->validator->getErrors();
-            $response=[
-                'status'=>false,
-                'message'=>reset($firstError)
+        } else {
+            $firstError = $this->validator->getErrors();
+            $response = [
+                'status'  => false,
+                'message' => reset($firstError)
             ];
             return json_encode($response);
         }

@@ -197,12 +197,11 @@
 
                 //setting options for the ajax request
                 $.ajax({
-                    data: new FormData(this),
+                    data: new FormData(form),
                     contentType:false,
                     processData: false,
                     url: '/products',
                     method: 'POST',
-
                     beforeSend:function(){
                         submitButton.prop('disabled',true).addClass('running')
                     },
