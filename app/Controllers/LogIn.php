@@ -9,7 +9,7 @@ class LogIn extends Controller
     public function index()
     {
         helper(['form']);
-        echo view('login');
+        echo view('client/login');
     }
 
     public function loginAuth()
@@ -35,16 +35,29 @@ class LogIn extends Controller
                 ];
 
                 $session->set($ses_data);
-                return redirect()->to('/index');
+                $response=[
+                    'status'=>true,
+                    'url'=>'/index'
+                ];
+                return json_encode($response);
+//                return redirect()->to('/index');
 
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
-                return redirect()->to('/login');
+                $response=[
+                    'status'=>false,
+                    'message'=>'Incorrect credentials.'
+                ];
+                return json_encode($response);
             }
 
         }else{
             $session->setFlashdata('msg', 'Email does not exist.');
-            return redirect()->to('/login');
+            $response=[
+                'status'=>false,
+                'message'=>'Incorrect credentials.'
+            ];
+            return json_encode($response);
         }
     }
 }

@@ -7,7 +7,7 @@ class Users extends BaseController
 {
     public function index()
     {
-        return view('register');
+        return view('client/register');
     }
     public function store()
     {
@@ -36,12 +36,21 @@ class Users extends BaseController
             $model->save($newData);
             $session = session();
             $session->setFlashdata('success', 'Successful Registration!');
-            return redirect()->to('/login');
+            $response=[
+                'status'=>true,
+                'url'=>'/login'
+            ];
+            return json_encode($response);
         }
         else
-        {
-            return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
+        {$firstError=$this->validator->getErrors();
+            $response=[
+                'status'=>false,
+                'message'=>reset($firstError)
+            ];
+            return json_encode($response);
         }
     }
+
 }
 
