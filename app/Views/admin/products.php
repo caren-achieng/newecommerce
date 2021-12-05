@@ -37,25 +37,6 @@
             <div class="row mb-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <form class="row g-3" id="category" method="post" action="">
-                        <div class="col-md-4 mb-4">
-                            <label for="category_name" class="form-label">Category</label>
-                            <select id="inputState" class="form-select" name="category" onchange="addSubcategories(value);">
-                                <option value="" disabled selected>Choose...</option>
-                                <?php
-                                foreach($categories as $category){
-                                    echo '<option value="'.$category['category_id'].'">'.$category['category_name'].'</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label for="subcategory_name" class="form-label">Subcategory</label>
-                            <select id="subcategory" class="form-select" name="subcategory_name">
-                                <option value="" disabled selected>Choose...</option>
-                            </select>
-                        </div>
-
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -81,6 +62,28 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <form class="g-3" id="category" method="post" action="">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <label for="category_name" class="form-label">Category</label>
+                                <select id="inputState" class="form-select" name="category" onchange="addSubcategories(value);">
+                                    <option value="" disabled selected>Choose...</option>
+                                    <?php
+                                    foreach($categories as $category){
+                                        echo '<option value="'.$category['category_id'].'">'.$category['category_name'].'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="subcategory_id" class="form-label">Subcategory</label>
+                                <select id="subcategory" class="form-select" name="subcategory_id">
+                                    <option value="" disabled selected>Choose...</option>
+                                </select>
+                            </div>
+                            </div>
+                            <hr>
                             <div class="row mt-3 mb-3 col-12">
                                 <label for="prod_name" class="col-sm-2 col-form-label">Product Name</label>
                                 <div class="col-sm-10">
@@ -131,8 +134,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    if ($("#category").length > 0) {
-        $("#category").validate({
+    $("#category").validate({
             rules: {
                 prod_name: {
                     required: true,
@@ -175,40 +177,22 @@
                 }
             },
             submitHandler: function (form) {
-                //declare object to store form data
-                // var form=$('form')[0];
-                // var formdata=new FormData(form);form
-                // const image = $('#image')[0];
-                // formdata.append('image',image);
-                // console.log(image);
-                // console.log(formdata);
-                // // return;
-                // const data = {};
-                // //get form data as an array
-                // $(form).serializeArray();
-                // console.log($(form).serializeArray());
-                // //loop through above array storing each input in data object as name, value, pair
-                // $(form).serializeArray().map(function (object) {
-                //     data[object.name] = object.value;
-                // });
-                // data.image=image;
-
                 const submitButton=jQuery(form).find(jQuery('button[type="submit"]'));
 
                 //setting options for the ajax request
                 $.ajax({
-                    data: new FormData(this),
+                    data: new FormData(form),
                     contentType:false,
                     processData: false,
-                    url: '/products',
+                    url: '/products/store',
                     method: 'POST',
+                    dataType: 'json',
 
                     beforeSend:function(){
                         submitButton.prop('disabled',true).addClass('running')
                     },
                     //request callback/response from the backend(user.php::store)
-                    success: function (response) {
-                        const jason = JSON.parse(response);
+                    success: function (jason) {
                         if (jason.status) {
                             Swal.fire({
                                 position: 'center',
@@ -244,8 +228,8 @@
                     }
                 });
             }
-        })
-    }
+        });
+
     function addSubcategories(id){
         document.getElementById('subcategory').innerHTML='';
         document.getElementById('subcategory').innerHTML='<option value="" disabled selected>Choose...</option>';

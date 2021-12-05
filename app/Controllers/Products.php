@@ -26,29 +26,44 @@ class Products extends BaseController
 
     public function store()
     {
-        dd($this->request->getVar());
-
+//        dd($this->request->getVar(), $this->request->getFile('prod_image'));
+//        dd($this->request->getVar('prod_image'), $this->request->getFile('prod_image'));
+        date_default_timezone_set('Africa/Nairobi');
+        $date= date('Y-m-d H:i:s');
         $rules = [
         'prod_name'=>'required|min_length[1]|max_length[25]',
-        'prod_image'=>'required',
+//        'prod_image'=>'required',
         'unit_price'=>'required',
         'stock'=>'required'
         ];
 
+        $file = $this->request->getFile('prod_image');
+
+        if(!$file->isValid()){
+            return json_encode('Please upload a valid image.');
+        }
+
+        $imageName = "pic_".time().".{$file->getClientExtension()}";
+        $file->move("/assets/images/products",$imageName);
+
         if ($this->validate($rules))
         {
             //store user in DB
+
             $model = new ProductsModel();
 
             $newData = [
             'product_name'=>$this->request->getVar('prod_name'),
             'product_description'=>$this->request->getVar('prod_description'),
-            'product_image'=>$this->request->getVar('prod_image'),
+            'product_image'=>$imageName,
             'unit_price'=>$this->request->getVar('unit_price'),
             'available_quantity'=>$this->request->getVar('stock'),
-            'subcategory_name'=> $this->request->getVar('subcategory_name'),
-            'category'=>$this->request->getVar('category')
+            'subcategory_id'=> $this->request->getVar('subcategory_id'),
+            'created_at' => $date,
+            'updated_at' => $date,
+            'added_by'=> 7
             ];
+
 
             $model->save($newData);
             $response=[

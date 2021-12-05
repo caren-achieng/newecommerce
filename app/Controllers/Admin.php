@@ -69,7 +69,8 @@ class Admin extends BaseController
     public function clients()
     {
         $clients = new UserModel();
-        $data['clients'] = json_decode(json_encode($clients->getWhere(['role'=>1])->getResult()),true);
+        $data['clients'] = json_decode(json_encode($clients->whereIn('role', [1])->paginate()),true);
+        $data['pager'] = $clients->pager;
         echo view('admin/header');
         echo view('admin/css');
         echo view('admin/navtop');
@@ -82,7 +83,8 @@ class Admin extends BaseController
     public function admins()
     {
         $clients = new UserModel();
-        $data['clients'] = json_decode(json_encode($clients->getWhere(['role'=>2])->getResult()),true);
+        $data['clients'] = json_decode(json_encode($clients->whereIn('role', [2])->paginate()),true);
+        $data['pager'] = $clients->pager;
         echo view('admin/header');
         echo view('admin/css');
         echo view('admin/navtop');

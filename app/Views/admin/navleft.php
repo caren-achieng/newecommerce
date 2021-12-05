@@ -55,29 +55,26 @@
                     <a href="/categories" class="nav-link">
                         <i class="fas fa-shopping-bag"></i>                        <p>
                             Products
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/categories" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Categories</p>
                                 <i class="fas fa-plus"></i>
+                                <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/subcategories" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Subcategories</p>
                                 <i class="fas fa-plus"></i>
+                                <p>Subcategories</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/products" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Products</p>
                                 <i class="fas fa-plus"></i>
+                                <p>Products</p>
                             </a>
                         </li>
                     </ul>

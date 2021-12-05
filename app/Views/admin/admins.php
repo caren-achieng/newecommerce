@@ -62,6 +62,7 @@
                             <?php endforeach; ?>
                             </tbody>
                         </table>
+                        <?php echo $pager->links(); ?>
                     </div>
                     <div>
                     </div>

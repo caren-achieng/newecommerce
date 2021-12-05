@@ -1,0 +1,19 @@
+.pagination li{
+    padding: 0 10px;
+    border: solid 1px black;
+    border-radius: 2px;
+    margin: 0 5px 0 5px;
+}
+.pagination li a{
+    text-decoration: none;
+    color: black;
+}
+.pagination .active{
+    background: black;
+}
+.pagination .active a{
+    color: white;
+}
+ul.pagination{
+    float: right;
+}
