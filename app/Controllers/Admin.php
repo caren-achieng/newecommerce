@@ -120,7 +120,6 @@ class Admin extends BaseController
         ];
         $client->update($id,$data);
         return redirect()->to(base_url('clients'))->with('status','Data Updated Successfully');
-
     }
 
     public function delete($id){
