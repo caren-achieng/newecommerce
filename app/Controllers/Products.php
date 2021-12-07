@@ -26,13 +26,10 @@ class Products extends BaseController
 
     public function store()
     {
-//        dd($this->request->getVar(), $this->request->getFile('prod_image'));
-//        dd($this->request->getVar('prod_image'), $this->request->getFile('prod_image'));
         date_default_timezone_set('Africa/Nairobi');
         $date= date('Y-m-d H:i:s');
         $rules = [
         'prod_name'=>'required|min_length[1]|max_length[25]',
-//        'prod_image'=>'required',
         'unit_price'=>'required',
         'stock'=>'required'
         ];

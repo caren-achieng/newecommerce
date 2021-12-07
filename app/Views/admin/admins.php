@@ -27,7 +27,8 @@
                     <div class="row">
                         <div class="col d-flex justify-content-between align-items-center">
                             <h4>Admin Data</h4>
-                            <a href="<?= base_url('/admin/register')?>" class="btn btn-primary">                            <i class="fas fa-user-plus"></i>
+                            <a href="<?= base_url('/admin/register')?>" class="btn btn-primary">
+                                <i class="fas fa-user-plus"></i>
                                 Add Admin</a>
                         </div>
                     </div>
