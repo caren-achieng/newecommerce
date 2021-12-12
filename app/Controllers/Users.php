@@ -51,6 +51,5 @@ class Users extends BaseController
             return json_encode($response);
         }
     }
-
 }
 

@@ -21,7 +21,20 @@
         <ul id="menuitems">
             <li> <a href="">Home</a></li>
             <li> <a href="">Products</a></li>
-            <li> <a href="/login">Login</a></li>
+            <li> <a href="<?php
+                    if(session()->has('id')){
+                        echo "#";
+                    }else{
+                        echo "/login";
+                    }
+                ?>"><?php
+                    if(session()->has('id')){
+                        echo "Welcome ".session()->get('name');
+                    }else{
+                        echo "Login";
+                    }
+                    ?></a></li>
+
         </ul>
     </nav>
     <img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart">

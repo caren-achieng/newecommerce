@@ -57,6 +57,14 @@
             New to J | B&W? <a href="/register">Create account</a>
         </div>
     </form>
+
+    <section id="login-error">
+        <?php if(session()->getFlashdata('msg')):?>
+            <div class="alert alert-info">
+                <?= session()->getFlashdata('msg') ?>
+            </div>
+        <?php endif;?>
+    </section>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
