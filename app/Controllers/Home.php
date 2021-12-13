@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\CategoryModel;
+use App\Models\SubcategoryModel;
 
 class Home extends BaseController
 {
     public function index()
     {
-        echo view('Partials/nav');
-        echo view('client/index');
-        echo view('Partials/footer');
+        $category = new CategoryModel();
+        $subcategory = new SubcategoryModel();
+        $data['categories'] = $category->findAll();
+        $data['subcategories'] = $subcategory->findAll();
+        echo view('client/home',$data);
     }
 }
+

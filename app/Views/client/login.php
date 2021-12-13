@@ -134,7 +134,11 @@
                                 timer: 1500,
                                 allowOutsideClick:false
                             }).then(() => {
-                                location.href=jason.url
+                                if(jason.role == 1) {
+                                    location.href = jason.customer_url
+                                }else{
+                                    location.href = jason.admin_url
+                                }
                             })
                         } else if (jason.message) {
                             Swal.fire(

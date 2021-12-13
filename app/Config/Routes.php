@@ -40,6 +40,9 @@ $routes->get('/register', 'Users::index');
 $routes->post('/register','Users::store');
 $routes->post('/login','LogIn::loginAuth');
 $routes->get('/index', 'Home::index');
+$routes->get('/logout', 'LogIn::logout');
+
+
 
 //admin routes
 $routes->get('admin/login', 'LogIn::index');
@@ -77,6 +80,10 @@ $routes->get('products/edit/(:num)','Products::edit/$1');
 $routes->get('products/delete/(:num)','Products::delete/$1');
 $routes->post('products/update/(:num)','Products::update/$1');
 $routes->post('products/store','Products::store');
+
+//clients
+$routes->get('customerproducts','Customers::index');
+$routes->get('/allproducts/(:num)','Customers::getProducts/$1');
 
 //all routes
 $routes->get('/', 'Profiles::index',['filter' => 'authGuard']);

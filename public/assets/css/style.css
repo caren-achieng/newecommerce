@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 body{
     font-family: 'Poppins', sans-serif;
@@ -43,11 +44,11 @@ p{
     justify-content: space-around;
 }
 .col-2{
-    flex-basis: 40%;
-    min-width: 300px;
+    flex-basis: 50%;
+    min-width: 500px;
 }
 .col-2 img{
-    max-width: 50%;
+    max-width: 100%;
     float: right;
 }
 .col-2 h1{
@@ -55,19 +56,20 @@ p{
     line-height: 60px;
     margin: 25px 0;
 }
-.btn{
+.button{
     display: inline-block;
-    background: black;
-    color: white;
+    /*background: black;*/
+    /*color: white;*/
     padding: 8px 30px;
     margin: 30px 0;
     border-radius: 30px;
     transition:background 0.5s;
+    text-decoration: none;
 }
 .header .row{
     margin-top: 30px;
 }
-.btn:hover{
+.button:hover{
     background:dimgray;
 }
 .categories{
@@ -158,7 +160,8 @@ h4{
     justify-content: center;
     align-items: center;
     width: 180px;
-    margin-left: 550px;
+    /*margin-top: 5px;*/
+    /*margin-left: 550px;*/
 }
 .message .btn:hover{
     background:white;
@@ -262,4 +265,15 @@ a li{
 .fname{
     font-family: 'Poppins', sans-serif;
     font-weight: 300px;
+}
+.font{
+    font-family: 'Poppins', sans-serif;
+}
+.size{
+    height: 500px;
+    width: 300px;
+    float: right;
+}
+.image{
+    border-radius: 25%;
 }

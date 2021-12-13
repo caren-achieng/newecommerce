@@ -37,7 +37,9 @@ class LogIn extends Controller
                 $session->set($ses_data);
                 $response=[
                     'status'=>true,
-                    'url'=>'/index'
+                    'role' => $data['role'],
+                    'customer_url'=>'/index',
+                    'admin_url'=>'/admin'
                 ];
                 return json_encode($response);
 //                return redirect()->to('/index');
@@ -59,5 +61,12 @@ class LogIn extends Controller
             ];
             return json_encode($response);
         }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/login');
     }
 }

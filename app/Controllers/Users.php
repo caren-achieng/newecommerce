@@ -16,7 +16,7 @@ class Users extends BaseController
             'last_name' => 'required|min_length[3]|max_length[20]',
             'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[tbl_users.email]',
             'password' => 'required|min_length[8]|max_length[255]',
-            'gender' => 'required'
+            'gender' => 'required',
         ];
 
         if ($this->validate($rules))

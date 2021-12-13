@@ -54,7 +54,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col d-flex justify-content-between align-items-center">
-                            <h4>Add Customer</h4>
+                            <h4>Add New User</h4>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,14 @@
                                <select id="gender" name="gender" class="form-select">
                                    <option value="female" selected>Female</option>
                                    <option value="male">Male</option>
-                                   <option value="other">Other</option>
+                               </select>
+                           </div>
+                           <div class="form-group col-md-4 text-dark">
+                               <label for="gender" class="form-label">Role</label>
+                               <select id="role" name="role" class="form-select">
+                                   <option selected disabled></option>
+                                   <option value="1">Customer</option>
+                                   <option value="2">Admin</option>
                                </select>
                            </div>
                        </div>
@@ -174,7 +181,7 @@
                 //setting options for the ajax request
                 $.ajax({
                     data: data,
-                    url: '/register',
+                    url: '/admin/register',
                     method: 'POST',
 
                     beforeSend:function(){

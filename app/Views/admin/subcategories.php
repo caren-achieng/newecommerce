@@ -89,9 +89,9 @@
                         <table class="table table-dark table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th scope="col">Category ID</th>
                                 <th scope="col">SubCategory ID</th>
                                 <th scope="col">SubCategory Name</th>
-                                <th scope="col">Category Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -99,6 +99,7 @@
                             <?php
                             foreach($subcategories as $row) : ?>
                                 <tr>
+                                    <td><?= $row['category'] ?></td>
                                     <td><?= $row['subcategory_id'] ?></td>
                                     <td><?= $row['subcategory_name'] ?></td>
                                     <td>

@@ -38,7 +38,7 @@ class Admin extends BaseController
             'last_name' => 'required|min_length[3]|max_length[20]',
             'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[tbl_users.email]',
             'password' => 'required|min_length[8]|max_length[255]',
-            'gender' => 'required'
+            'gender' => 'required',
         ];
 
         if ($this->validate($rules))
@@ -52,17 +52,26 @@ class Admin extends BaseController
                 'email'    => $this->request->getVar('email'),
                 'password' => $this->request->getVar('password'),
                 'gender'    => $this->request->getVar('gender'),
-                'role'=> 2
+                'role'=> $this->request->getVar('role')
             ];
 
             $model->save($newData);
-            $session = session();
-            $session->setFlashdata('success', 'Successful Registration!');
-            return redirect()->to('/admin');
+//            $session = session();
+//            $session->setFlashdata('success', 'Successful Registration!');
+//            return redirect()->to('/admin');
+            $response=[
+                'status'=>true,
+                'url'=>'/login'
+            ];
+            return json_encode($response);
         }
         else
-        {
-            return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
+        {$firstError=$this->validator->getErrors();
+            $response=[
+                'status'=>false,
+                'message'=>reset($firstError)
+            ];
+            return json_encode($response);
         }
     }
 
