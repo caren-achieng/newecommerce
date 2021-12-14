@@ -104,70 +104,15 @@
 <!--all sales-->
 <div class="small-container mt-5">
     <div class="row">
+        <?php foreach($products as $product){?>
         <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/men formal.jpg" alt="men's formal wear">
-            <h4>Black Suspenders</h4>
+            <img class="img-thumbnail" src="/assets/images/products/<?= $product['product_image'] ?>" alt="men's formal wear">
+            <h4><?= $product['product_name']?></h4>
             <div class="price">
-                <span>Ksh.5000 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/women formal wear.jpg" alt="women's formal wear">
-            <h4>White Blazer</h4>
-            <div class="price">
-                <span>Ksh.3000 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
+                <span><?= "Ksh ".$product['unit_price']."  " ?><button type="button" class="btn btn-dark" value="<?=$product['product_id']?>">Add to Cart</button>  </span>
             </div>
         </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children formal.jpg" alt="children's formal wear">
-            <h4>Kids' Tuxedo</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
-        <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/children casual.jpg" alt="kid's casual wear">
-            <h4>Kids' matching sweat pants</h4>
-            <div class="price">
-                <span>Ksh.3500 <button type="button" class="btn btn-dark">Add to Cart</button>  </span>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 

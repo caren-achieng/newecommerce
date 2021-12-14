@@ -242,7 +242,7 @@
                 var result = request.response;
                 const res = JSON.parse(result);
 
-                for (var i = 0; i < 1; i++) {
+                for (var i = 0; i < res.subcategories.length i++) {
                     document.getElementById('subcategory').innerHTML += '<option value="' + res.subcategories[i].id + '">' + res.subcategories[i].name + '</option>';
                 }
             }

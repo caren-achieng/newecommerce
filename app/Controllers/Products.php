@@ -41,7 +41,7 @@ class Products extends BaseController
         }
 
         $imageName = "pic_".time().".{$file->getClientExtension()}";
-        $file->move("/assets/images/products",$imageName);
+        $file->move(PUBLICPATH."/assets/images/products/",$imageName);
 
         if ($this->validate($rules))
         {

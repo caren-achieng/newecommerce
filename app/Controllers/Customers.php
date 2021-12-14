@@ -16,6 +16,10 @@ class Customers extends BaseController
         return view('client/customerproducts', $data);
     }
     public function getProducts($id = NULL){
+        $category = new CategoryModel();
+        $subcategory = new SubcategoryModel();
+        $data['categories'] = $category->findAll();
+        $data['subcategories'] = $subcategory->findAll();
         $subcategories = new SubcategoryModel();
         $product_subcategories = json_decode(json_encode($subcategories->getWhere(['category'=>$id])->getResult()), true);
         $x=0;
@@ -26,6 +30,8 @@ class Customers extends BaseController
         $products = new ProductsModel();
         $data['products'] = $products->whereIn('subcategory_id', $subcategory_id)->paginate();
         $data['pager'] = $products->pager;
+        return view('client/customerproducts', $data);
+
     }
 }
 
