@@ -35,7 +35,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // client routes
-$routes->get('/login', 'LogIn::index');
+$routes->get('/', 'LogIn::index');
 $routes->get('/register', 'Users::index');
 $routes->post('/register','Users::store');
 $routes->post('/login','LogIn::loginAuth');
@@ -74,7 +74,7 @@ $routes->post('subcategories/update/(:num)','Subcategories::update/$1');
 $routes->get('/products/(:num)','Products::getSubcategory/$1');
 
 //products routes
-$routes->get('/products','Products::index');
+$routes->get('/product','Products::index');
 $routes->post('/products','Products::store');
 $routes->get('products/edit/(:num)','Products::edit/$1');
 $routes->get('products/delete/(:num)','Products::delete/$1');
@@ -86,7 +86,8 @@ $routes->get('customerproducts','Customers::index');
 $routes->get('/allproducts/(:num)','Customers::getProducts/$1');
 
 //all routes
-$routes->get('/', 'Profiles::index',['filter' => 'authGuard']);
+//$routes->get('/', 'Profiles::index',['filter' => 'authGuard']);
+
 
 /*
  * --------------------------------------------------------------------

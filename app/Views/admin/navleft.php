@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/products" class="nav-link">
+                            <a href="/product" class="nav-link">
                                 <i class="fas fa-plus"></i>
                                 <p>Products</p>
                             </a>

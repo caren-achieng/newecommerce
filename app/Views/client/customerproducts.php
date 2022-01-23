@@ -106,7 +106,7 @@
     <div class="row">
         <?php foreach($products as $product){?>
         <div class="col-3">
-            <img class="img-thumbnail" src="/assets/images/products/<?= $product['product_image'] ?>" alt="men's formal wear">
+            <img class="img-thumbnail" src="/assets/products/<?= $product['product_image'] ?>" alt="">
             <h4><?= $product['product_name']?></h4>
             <div class="price">
                 <span><?= "Ksh ".$product['unit_price']."  " ?><button type="button" class="btn btn-dark" value="<?=$product['product_id']?>">Add to Cart</button>  </span>

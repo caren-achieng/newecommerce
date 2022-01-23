@@ -26,8 +26,7 @@ class Products extends BaseController
 
     public function store()
     {
-        date_default_timezone_set('Africa/Nairobi');
-        $date= date('Y-m-d H:i:s');
+
         $rules = [
         'prod_name'=>'required|min_length[1]|max_length[25]',
         'unit_price'=>'required',
@@ -41,7 +40,7 @@ class Products extends BaseController
         }
 
         $imageName = "pic_".time().".{$file->getClientExtension()}";
-        $file->move(PUBLICPATH."/assets/images/products/",$imageName);
+        $file->move(ROOTPATH."public/products",$imageName);
 
         if ($this->validate($rules))
         {
@@ -56,11 +55,8 @@ class Products extends BaseController
             'unit_price'=>$this->request->getVar('unit_price'),
             'available_quantity'=>$this->request->getVar('stock'),
             'subcategory_id'=> $this->request->getVar('subcategory_id'),
-            'created_at' => $date,
-            'updated_at' => $date,
             'added_by'=> 7
             ];
-
 
             $model->save($newData);
             $response=[
