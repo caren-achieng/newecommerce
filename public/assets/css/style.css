@@ -136,9 +136,9 @@ h4{
 .col-3 p{
     font-size: 14px;
 }
-.col-3:hover{
-    transform: translateY(-30px);
-}
+/*.col-3:hover{*/
+/*    transform: translateY(-30px);*/
+/*}*/
 .message{
     background-color: #555;
     height: 180px;

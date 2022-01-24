@@ -26,7 +26,6 @@ class Products extends BaseController
 
     public function store()
     {
-
         $rules = [
         'prod_name'=>'required|min_length[1]|max_length[25]',
         'unit_price'=>'required',
@@ -61,7 +60,7 @@ class Products extends BaseController
             $model->save($newData);
             $response=[
                 'status'=>true,
-                'url'=>'/products'
+                'url'=>'/product'
             ];
             return json_encode($response);
         }
@@ -118,4 +117,5 @@ class Products extends BaseController
         $response['subcategories']=$data;
         return $this->response->setJSON($response);
     }
+
 }

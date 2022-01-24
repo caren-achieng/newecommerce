@@ -19,6 +19,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+
+    <style>
+        .alert-success {
+            color: #000000;
+            background-color: #15fd74;
+            border-color: #badbcc;
+        }
+
+        .alert-danger {
+            color: #ffffff;
+            background-color: #fd1515;
+            border-color: #badbcc;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -102,21 +116,54 @@
     }
 </script>
 <!--all sales-->
-<div class="small-container mt-5">
-    <div class="row">
-        <?php foreach($products as $product){?>
-        <div onclick="window.location.href='/viewproduct/<?=$product['product_id']?>'" class="col-3">
-            <img class="img-thumbnail" src="/products/<?= $product['product_image'] ?>" alt="">
-            <br><br>
-            <h4><?= $product['product_name']?></h4>
-            <div class="price">
-                <span><?= "Ksh ".$product['unit_price']."  " ?> <br><br> <button type="button" class="btn btn-dark" value="<?=$product['product_id']?>">View Product</button></span>
-            </div>
-            <br>
+<form id="product" action="">
+    <div class="small-container mt-5">
+        <div id="alerter" class="alert alert-success position-absolute top-0 start-50 translate-middle-x w-100 text-center" style="display:none" role="alert">
+            <input type="hidden" name="productname" value="<?= $product[0]['product_name']?>">
+            <?= $product[0]['product_name'].' has been added to your cart' ?>
+
         </div>
-        <?php } ?>
+        <div id="error" class="alert alert-danger position-absolute top-0 start-50 translate-middle-x w-100 text-center" style="display:none" role="alert">
+            <input type="hidden" name="productname" value="<?= $product[0]['product_name']?>">
+            <?= 'Failed to add '.$product[0]['product_name'].' to your cart' ?>
+
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <img class="img-thumbnail" src="/products/<?= $product[0]['product_image'] ?>" alt="">
+                <input type="hidden" name="productimage" value="<?= $product[0]['product_image']?>">
+                <br>
+
+                <br>
+                <h4><?= $product[0]['product_name']?></h4>
+
+                <div class="price">
+                    <span><?= "Ksh ".$product[0]['unit_price']."  " ?></span>
+                    <input type="hidden" name="productprice" value="<?= $product[0]['unit_price']?>">
+                </div>
+                <br>
+            </div>
+            <div class="col-3">
+                <h4>Product Description</h4>
+                <div class="description">
+                    <span><?=$product[0]['product_description']."  " ?><br>
+                    </span>
+                </div>
+                <br>
+
+                <h4>Items in Stock</h4>
+                <div class="instock">
+                    <span><?=$product[0]['available_quantity']."  " ?><br><br>
+
+                        <button type="submit" class="btn btn-dark" value="<?=$product[0]['product_id']?>">Add to Cart</button>
+                                    <input type="hidden" name="productid" value="<?= $product[0]['product_id']?>">
+                    </span>
+                </div>
+                <br>
+            </div>
+        </div>
     </div>
-</div>
+</form>
 
 <div class="footer">
     <div class="container">
@@ -143,8 +190,50 @@
             </div>
         </div>
         <hr>
+
         <p class="copyright"> Copyright 2021 - Internet Application Programming Project</p>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#product').submit(function(event){
+            event.preventDefault();
+            var $form = $(this);
+
+            var $inputs = $form.find("button");
+
+            var data = $form.serialize();
+
+            $inputs.prop("disabled", true);
+
+            $.ajax({
+                url: '/cart/add',
+                type: 'post',
+                data: data,
+                success: function(response){
+                    if(response == "success"){
+                        $inputs.prop("disabled", false);
+                        document.getElementById('alerter').style.display='';
+                        setTimeout(removeAlert,2000);
+
+                    }else{
+                        $inputs.prop("disabled", false);
+                        document.getElementById('error').style.display='';
+                        setTimeout(removeAlert,2000);
+                    }
+                }
+            });
+        });
+    });
+
+    function removeAlert(){
+        document.getElementById('alerter').style.display='none';
+        document.getElementById('error').style.display='none';
+    }
+
+</script>
 </body>
 </html>
