@@ -32,6 +32,12 @@
             background-color: #fd1515;
             border-color: #badbcc;
         }
+        .position{
+            transform:translate(48px, 0px);
+        }
+        #form1{
+            width: 50px;
+        }
     </style>
 </head>
 <body>
@@ -147,6 +153,7 @@
                 <h4>Product Description</h4>
                 <div class="description">
                     <span><?=$product[0]['product_description']."  " ?><br>
+                         <input type="hidden" name="productdescription" value="<?= $product[0]['product_description'] ?>">
                     </span>
                 </div>
                 <br>
@@ -155,7 +162,7 @@
                 <div class="instock">
                     <span><?=$product[0]['available_quantity']."  " ?><br><br>
 
-                        <button type="submit" class="btn btn-dark" value="<?=$product[0]['product_id']?>">Add to Cart</button>
+                        <button type="submit" class="btn btn-dark" id="cart_button" value="<?=$product[0]['product_id']?>">Add to Cart</button>
                                     <input type="hidden" name="productid" value="<?= $product[0]['product_id']?>">
                     </span>
                 </div>
@@ -217,6 +224,8 @@
                     if(response == "success"){
                         $inputs.prop("disabled", false);
                         document.getElementById('alerter').style.display='';
+                        document.getElementById('cart_button').style.display='none';
+                        document.getElementById('quantity').style.display='flex';
                         setTimeout(removeAlert,2000);
 
                     }else{
@@ -233,6 +242,7 @@
         document.getElementById('alerter').style.display='none';
         document.getElementById('error').style.display='none';
     }
+
 
 </script>
 </body>

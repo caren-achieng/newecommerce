@@ -72,10 +72,10 @@ class Customers extends BaseController
     public function addToCart(){
         $data = array(
             'id'=>$this->request->getVar('productid'),
-            'qty'=>1,
-            'price'=>(int)$this->request->getVar('productprice'),
+            'qty'=>$this->request->getVar('quantity'),
+            'price'=>$this->request->getVar('productprice'),
             'name'=>$this->request->getVar('productname'),
-            'options'=>array('img'=>$this->request->getVar('productimage'))
+            'options'=>array('img'=>$this->request->getVar('productimage'), 'description'=>$this->request->getVar('productdescription'))
         );
         $cart = \Config\Services::cart();
         if($cart->insert($data)){
@@ -86,12 +86,22 @@ class Customers extends BaseController
         }
     }
     public function viewCart(){
+        $cart = \Config\Services::cart();
         $category = new CategoryModel();
         $subcategory = new SubcategoryModel();
         $data['categories'] = $category->findAll();
         $data['subcategories'] = $subcategory->findAll();
         $subcategories = new SubcategoryModel();
+        $data['orders'] = $cart->contents();
         return view('client/cart', $data);
+    }
+    public function changeQuantity($id = null){
+        $cart = \Config\Services::cart();
+        $cart->update(array(
+            'rowid'=> $id,
+            'qty'=>$this->request->getVar('quantity')
+        ));
+        return "success";
     }
 }
 

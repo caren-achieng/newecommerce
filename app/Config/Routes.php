@@ -86,6 +86,7 @@ $routes->get('/eachproduct/(:num)','Customers::getProduct/$1');
 $routes->get('/viewproduct/(:num)','Customers::viewProduct/$1');
 $routes->get('cart','Customers::viewCart');
 $routes->post('cart/add','Customers::addToCart');
+$routes->post('/changequantity/(:alphanum)','Customers::changeQuantity/$1');
 
 
 

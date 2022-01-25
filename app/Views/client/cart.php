@@ -1,4 +1,4 @@
-<!doctype html>
+<?php $cart = \Config\Services::cart(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +26,11 @@
             background-color: #15fd74;
             border-color: #badbcc;
         }
+
+        #form1{
+            width: 50px;
+        }
+
     </style>
 </head>
 <body>
@@ -106,111 +111,50 @@
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0 text-black">Your Cart</h1>
-                                        <h6 class="mb-0 text-muted">3 items</h6>
+                                        <h6 class="mb-0 text-muted"><?php if($cart->totalItems() == 1){
+
+                                            echo $cart->totalItems()." item";
+                                            }elseif($cart->totalItems() == 0){
+                                                echo "Your cart is empty";
+                                            }else{
+                                            echo $cart->totalItems()." items";
+                                            }?></h6>
                                     </div>
+                                    <?php foreach($orders as $order){?>
                                     <hr class="my-4">
 
                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                                         <div class="col-md-2 col-lg-2 col-xl-2">
                                             <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
+                                                src="/products/<?=$order['options']['img']?>"
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h6 class="text-muted">Shirt</h6>
-                                            <h6 class="text-black mb-0">Cotton T-shirt</h6>
+                                            <h6 class="text-muted"><?= $order['name']?></h6>
+                                            <h6 class="text-black mb-0"><?=$order['options']['description']?></h6>
                                         </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                        <div class="col-md-3 col-lg-3 d-flex">
                                             <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown(); changeQuantity('<?=$order['rowid']?>');">
                                                 <i class="fas fa-minus"></i>
                                             </button>
 
-                                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                   class="form-control form-control-sm" />
+                                            <input id="form1" min="0" name="quantity" value="<?=$order['qty']?>" type="number"
+                                                   class="form-control form-control-sm" size="50"/>
 
                                             <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp(); changeQuantity('<?=$order['rowid']?>');">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
                                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">€ 44.00</h6>
+                                            <h6 class="mb-0"><?= "Ksh ".$order['price'] ?></h6>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                             <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                         </div>
                                     </div>
-
-                                    <hr class="my-4">
-
-                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <div class="col-md-2 col-lg-2 col-xl-2">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                        </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h6 class="text-muted">Shirt</h6>
-                                            <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                        </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                            <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-
-                                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                   class="form-control form-control-sm" />
-
-                                            <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">€ 44.00</h6>
-                                        </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <hr class="my-4">
-
-                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <div class="col-md-2 col-lg-2 col-xl-2">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
-                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                        </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h6 class="text-muted">Shirt</h6>
-                                            <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                        </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                            <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-
-                                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                   class="form-control form-control-sm" />
-
-                                            <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">€ 44.00</h6>
-                                        </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <hr class="my-4">
+                                    <?php }?>
 
                                     <div class="pt-5">
                                         <h6 class="mb-0"><a href="#!" class="text-body"><i
@@ -224,35 +168,22 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">items 3</h5>
-                                        <h5>€ 132.00</h5>
-                                    </div>
+                                        <h5 class="text-uppercase"><?php if($cart->totalItems() == 1){
 
-                                    <h5 class="text-uppercase mb-3">Shipping</h5>
-
-                                    <div class="mb-4 pb-2">
-                                        <select class="select">
-                                            <option value="1">Standard-Delivery- €5.00</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                        </select>
-                                    </div>
-
-                                    <h5 class="text-uppercase mb-3">Give code</h5>
-
-                                    <div class="mb-5">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea2">Enter your code</label>
-                                        </div>
+                                                echo $cart->totalItems()." item";
+                                            }elseif($cart->totalItems() == 0){
+                                                echo "Your cart is empty";
+                                            }else{
+                                                echo $cart->totalItems()." items";
+                                            }?></h5>
+                                        <h5><?= $cart->total()?></h5>
                                     </div>
 
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Total price</h5>
-                                        <h5>€ 137.00</h5>
+                                        <h5><?= $cart->total()?></h5>
                                     </div>
 
                                     <button type="button" class="btn btn-dark btn-block btn-lg"
@@ -266,3 +197,23 @@
         </div>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+<script>
+    function changeQuantity(rowid){
+        console.log(document.getElementById('form1').value);
+        quantity = document.getElementById('form1').value;
+        $.ajax({
+            method: 'post',
+            url: /changequantity/+rowid,
+            data:{quantity: quantity},
+            success:function(response){
+                if(response == "success"){
+                    location.reload();
+                }
+            }
+        });
+
+    }
+</script>
