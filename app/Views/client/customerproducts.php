@@ -114,6 +114,7 @@
 <!--all sales-->
 <div class="small-container mt-5">
     <div class="row">
+
         <?php foreach($products as $product){?>
         <div onclick="window.location.href='/viewproduct/<?=$product['product_id']?>'" class="col-3">
             <img class="img-thumbnail" src="/products/<?= $product['product_image'] ?>" alt="">
