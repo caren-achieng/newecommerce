@@ -57,7 +57,7 @@
                             echo "Login";
                         }
                         ?></a></li>
-                <li><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></li>
+                <li><a href="/cart"><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></a></li>
                 <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon"
                          onclick="menutoggle()"></li>
                 <li><a href="/logout" class="logout" <?php
@@ -122,12 +122,11 @@
                                     </div>
                                     <?php foreach($orders as $order){?>
                                     <hr class="my-4">
-
-                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
                                         <div class="col-md-2 col-lg-2 col-xl-2">
                                             <img
                                                 src="/products/<?=$order['options']['img']?>"
-                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                class="img-fluid rounded-3">
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
                                             <h6 class="text-muted"><?= $order['name']?></h6>
@@ -151,13 +150,13 @@
                                             <h6 class="mb-0"><?= "Ksh ".$order['price'] ?></h6>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                            <a href="/deleteitem/<?=$order['rowid']?>" class="text-muted"><i class="fas fa-times"></i></a>
                                         </div>
                                     </div>
                                     <?php }?>
 
                                     <div class="pt-5">
-                                        <h6 class="mb-0"><a href="#!" class="text-body"><i
+                                        <h6 class="mb-0"><a href="<?= previous_url('true')?>" class="text-body"><i
                                                     class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                                     </div>
                                 </div>
@@ -187,7 +186,7 @@
                                     </div>
 
                                     <button type="button" class="btn btn-dark btn-block btn-lg"
-                                            data-mdb-ripple-color="dark">Register</button>
+                                            data-mdb-ripple-color="dark">CHECK OUT</button>
                                 </div>
                             </div>
                         </div>

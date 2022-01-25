@@ -43,7 +43,7 @@
                             echo "Login";
                         }
                         ?></a></li>
-                <li><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></li>
+                <li><a href="/cart"><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></a></li>
                 <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon"
                          onclick="menutoggle()"></li>
                 <li><a href="/logout" class="logout" <?php
@@ -58,7 +58,9 @@
             </ul>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -69,22 +71,23 @@
                 <ul class="navbar-nav mb-2 mb-lg-0 justify-content-between w-100">
                     <?php $i=1; foreach ($categories as $category) { ?>
                         <li class="nav-item dropdown <?=$i===count($categories)?'dropstart':''?>">
-                            <a class="nav-link text-light" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link text-light" href="#"  id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"><?= $category['category_name'] ?></a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/allproducts/<?=$category['category_id']?>">All</a></li>
                                 <?php foreach($subcategories as $subcategory){
                                     if($subcategory['category']==$category['category_id']){
-                                    ?>
-                                        <li><a class="dropdown-item" href="#"><?= $subcategory['subcategory_name'] ?></a></li>
-                                <?php } }?>
+                                        ?>
+                                        <li><a class="dropdown-item" href="/eachproduct/<?=$subcategory['subcategory_id']?>"><?= $subcategory['subcategory_name'] ?></a></li>
+                                    <?php } }?>
                             </ul>
                         </li>
-                    <?php $i++; } ?>
+                        <?php $i++; } ?>
                 </ul>
             </div>
         </div>
     </nav>
+
 
 </div>
 <!--toggle menu-->
@@ -121,16 +124,16 @@
     <div class="small-container">
         <div class="row">
             <div class="col-3">
-                <img class="img-thumbnail image rounded-circle " src="/assets/images/women-featured.jpg" alt="woman">
+                <a href="/allproducts/1"><img class="img-thumbnail image rounded-circle " src="/assets/images/women-featured.jpg" alt="woman"></a>
             </div>
             <div class="col-3">
-                <img class="img-thumbnail image rounded-circle" src="/assets/images/men-featured.jpg" alt="man">
+                <a href="/allproducts/2"><img class="img-thumbnail image rounded-circle" src="/assets/images/men-featured.jpg" alt="man"></a>
             </div>
             <div class="col-3">
-                <img class="img-thumbnail image rounded-circle" src="/assets/images/child-featured.jpg" alt="child">
+                <a href="/allproducts/3"><img class="img-thumbnail image rounded-circle" src="/assets/images/child-featured.jpg" alt="child"></a>
             </div>
             <div class="col-3">
-                <img class="img-thumbnail image rounded-circle" src="/assets/images/pets-featured.jpg" alt="dog-in-jacket">
+                <a href="/allproducts/4"><img class="img-thumbnail image rounded-circle" src="/assets/images/pets-featured.jpg" alt="dog-in-jacket"></a>
             </div>
         </div>
     </div>

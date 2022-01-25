@@ -64,7 +64,7 @@
                             echo "Login";
                         }
                         ?></a></li>
-                <li><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></li>
+                <li><a href="/cart"><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></a></li>
                 <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon"
                          onclick="menutoggle()"></li>
                 <li><a href="/logout" class="logout" <?php
@@ -106,6 +106,7 @@
             </div>
         </div>
     </nav>
+
 </div>
 <!--toggle menu-->
 <script>
@@ -224,8 +225,6 @@
                     if(response == "success"){
                         $inputs.prop("disabled", false);
                         document.getElementById('alerter').style.display='';
-                        document.getElementById('cart_button').style.display='none';
-                        document.getElementById('quantity').style.display='flex';
                         setTimeout(removeAlert,2000);
 
                     }else{

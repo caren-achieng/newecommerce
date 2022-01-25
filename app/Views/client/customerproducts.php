@@ -44,7 +44,7 @@
                             echo "Login";
                         }
                         ?></a></li>
-                <li><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></li>
+                <li><a href="/cart"><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></a></li>
                 <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon"
                          onclick="menutoggle()"></li>
                 <li><a href="/logout" class="logout" <?php
@@ -86,6 +86,16 @@
             </div>
         </div>
     </nav>
+    <div class="btn-group position-absolute top-4 end-0">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+           Sort by :
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">Date added</a></li>
+            <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+            <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+        </ul>
+    </div>
 </div>
 <!--toggle menu-->
 <script>

@@ -15,6 +15,7 @@ class Customers extends BaseController
         $data['subcategories'] = $subcategory->findAll();
         return view('client/customerproducts', $data);
     }
+
     public function getProducts($id = NULL){
         $category = new CategoryModel();
         $subcategory = new SubcategoryModel();
@@ -33,6 +34,7 @@ class Customers extends BaseController
         return view('client/customerproducts', $data);
 
     }
+
     public function getProduct($id = NULL){
         $category = new CategoryModel();
         $subcategory = new SubcategoryModel();
@@ -72,7 +74,7 @@ class Customers extends BaseController
     public function addToCart(){
         $data = array(
             'id'=>$this->request->getVar('productid'),
-            'qty'=>$this->request->getVar('quantity'),
+            'qty'=>1,
             'price'=>$this->request->getVar('productprice'),
             'name'=>$this->request->getVar('productname'),
             'options'=>array('img'=>$this->request->getVar('productimage'), 'description'=>$this->request->getVar('productdescription'))
@@ -85,6 +87,7 @@ class Customers extends BaseController
             return 'fail';
         }
     }
+
     public function viewCart(){
         $cart = \Config\Services::cart();
         $category = new CategoryModel();
@@ -95,13 +98,21 @@ class Customers extends BaseController
         $data['orders'] = $cart->contents();
         return view('client/cart', $data);
     }
-    public function changeQuantity($id = null){
+
+    public function changeQuantity($id = null)
+    {
         $cart = \Config\Services::cart();
         $cart->update(array(
-            'rowid'=> $id,
-            'qty'=>$this->request->getVar('quantity')
+            'rowid' => $id,
+            'qty' => $this->request->getVar('quantity')
         ));
         return "success";
+    }
+
+    public function deleteItem($rowid=null){
+        $cart = \Config\Services::cart();
+        $cart->remove($rowid);
+        return redirect()->back();
     }
 }
 
