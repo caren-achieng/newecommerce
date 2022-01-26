@@ -24,6 +24,19 @@ class Products extends BaseController
         echo view('admin/htmlclose');
     }
 
+    public function allproducts()
+    {
+        $products = new ProductsModel();
+        $data['products'] = $products->findAll();
+        echo view('admin/header');
+        echo view('admin/css');
+        echo view('admin/navtop');
+        echo view('admin/navleft');
+        echo view('admin/viewallproducts', $data);
+        echo view('admin/footer');
+        echo view('admin/htmlclose');
+    }
+
     public function store()
     {
         $rules = [

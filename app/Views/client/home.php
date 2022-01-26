@@ -29,7 +29,9 @@
         <div class="right">
             <ul>
                 <li><a class="nav-link link-secondary" href="#">Home</a></li>
+
                 <li><a class="nav-link link-secondary" href="#">Products</a></li>
+
                 <li><a class="nav-link link-secondary" href="<?php
                     if (session()->has('id')) {
                         echo "#";
@@ -42,19 +44,26 @@
                         } else {
                             echo "Login";
                         }
-                        ?></a></li>
+                        ?></a>
+                </li>
+
                 <li><a href="/cart"><img src="/assets/images/cart.jpg" width="30px" height="30px" alt="shopping-cart"></a></li>
-                <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon"
-                         onclick="menutoggle()"></li>
-                <li><a href="/logout" class="logout" <?php
+
+                <li><img src="/assets/images/menu.png" class="menu-icon" width="28px" alt="menu-icon" onclick="menutoggle()"></li>
+
+                <li><a href="/logout" class="logout"
+                    <?php
                     if (session()->has('id')) {
                         echo "/logout";
                     }
-                    ?>"><?php
+                    ?>">
+                    <?php
                     if (session()->has('id')) {
                         echo "Log out";
                     }
-                    ?></a></li>
+                    ?>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

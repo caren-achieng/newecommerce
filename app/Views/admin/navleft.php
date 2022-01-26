@@ -2,19 +2,33 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/admin" class="brand-link">
-        <img src="assets/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Just|Black$White</span>
+        <img src="assets/images/logo.png" alt="Just Black and White Logo" class="rounded-circle" width="70" height="70px" style="opacity: .8">
+        <span class="brand-text ml-2 font-weight-light">Just|Black$White</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="assets/images/womencasual.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <li>
+                    <a class="nav-link link-secondary" href="
+                        <?php
+                            if (session()->has('id')) {
+                                echo "#";
+                            } else {
+                                echo "/login";
+                            }
+                        ?>">
+                        <?php
+                        if (session()->has('id')) {
+                            echo "Welcome " . session()->get('name');
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </a>
+                </li>
             </div>
         </div>
 
@@ -74,7 +88,13 @@
                         <li class="nav-item">
                             <a href="/product" class="nav-link">
                                 <i class="fas fa-plus"></i>
-                                <p>Products</p>
+                                <p>Add Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/viewallproducts" class="nav-link">
+                                <i class="fas fa-plus"></i>
+                                <p>View All Products</p>
                             </a>
                         </li>
                     </ul>

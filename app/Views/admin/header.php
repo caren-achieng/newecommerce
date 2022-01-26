@@ -26,4 +26,4 @@
     <!-- summernote -->
     <link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/summernote/summernote-bs4.min.css')?>">
     <!-- Pagination -->
-    <link rel="stylesheet" href="/assets/css/pagination-style.css")?>">
+    <link rel="stylesheet" href="/assets/css/pagination-style.css")?>

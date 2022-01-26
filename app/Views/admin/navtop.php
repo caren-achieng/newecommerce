@@ -1,7 +1,8 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="assets/images/logo.png" alt="AdminLTELogo"  height="100px" width="100px">
+    <div class="bg-dark preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake rounded-circle" src="assets/images/logo.png" alt="Just Black and White Logo"  height="100px" width="100px"><br>
+    <h2 class="font-monospace">Just Black and White</h2>
     </div>
 
     <div class="wrapper">
@@ -16,7 +17,18 @@
                 <a href="/index" class="nav-link">Customer Mode</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Log out</a>
+                <a href="/logout" class="nav-link logout"
+                <?php
+                if (session()->has('id')) {
+                    echo "/logout";
+                }
+                ?>">
+                <?php
+                if (session()->has('id')) {
+                    echo "Log out";
+                }
+                ?>
+                </a>
             </li>
         </ul>
 

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL PRODUCTS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/ldbtn.min.css">
+    <link rel="stylesheet" href="/assets/css/loading.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <style>
+        .card{
+            box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
+        }
+        .card-header{
+            background-color: black;
+            color: white;
+        }
+        .error {
+            width: 100%;
+            margin-top: .25rem;
+            font-size: .875em;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 mt-4">All Products</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col d-flex justify-content-between align-items-center">
+                            <h4>Products Data</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">In stock</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach($products as $row) : ?>
+                                <tr>
+                                    <td><?= $row['product_id'] ?></td>
+                                    <td><?= $row['product_name'] ?></td>
+                                    <td><?= $row['product_image'] ?></td>
+                                    <td><?= $row['product_description'] ?></td>
+                                    <td><?= $row['unit_price'] ?></td>
+                                    <td><?= $row['available_quantity'] ?></td>
+
+                                    <td>
+                                        <a href="<?= base_url('product/edit/'.$row['product_id'])?>" class="btn btn-success btn-sm">Edit</a>
+                                        <a href="<?= base_url('product/delete/'.$row['product_id'])?>" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    if ($("#category").length > 0) {
+        $("#category").validate({
+            rules: {
+                category_name: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 25
+                }
+            },
+
+            messages: {
+                category_name: {
+                    required: "Field is required",
+                    minlength: "Minimum length 1 characters",
+                    maxlength: "Maximum length 25 characters"
+                }
+            },
+            submitHandler: function(form) {
+                //declare object to store form data
+                const data = {};
+                //get form data as an array
+                $(form).serializeArray();
+                console.log($(form).serializeArray());
+                //loop through above array storing each input in data object as name, value, pair
+                $(form).serializeArray().map(function (object) {
+                    data[object.name] = object.value;
+                });
+
+                const submitButton=jQuery(form).find(jQuery('button[type="submit"]'));
+
+                //setting options for the ajax request
+                $.ajax({
+                    data: data,
+                    url: '/categories',
+                    method: 'POST',
+
+                    beforeSend:function(){
+                        submitButton.prop('disabled',true).addClass('running')
+                    },
+                    //request callback/response from the backend(user.php::store)
+                    success: function (response) {
+                        const jason = JSON.parse(response);
+                        if (jason.status) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Category Added Successfully',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                allowOutsideClick:false
+                            }).then(() => {
+                                location.href=jason.url
+                            })
+                        } else if (jason.message) {
+                            Swal.fire(
+                                'OOPS!',
+                                jason.message,
+                                'error'
+                            )
+                        }
+                        else{
+                            Swal.fire(
+                                'OOPS!',
+                                'Something went wrong.',
+                                'error'
+                            )
+                        }
+                    },
+                    //in case an error occurs(error handler)
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    complete:function(){
+                        submitButton.prop('disabled',false).removeClass('running')
+                    }
+                });
+            }
+        })
+    }
+</script>
+</body>
+</html>
+
+

@@ -91,9 +91,9 @@
            Sort by :
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Date added</a></li>
-            <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-            <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+            <li><a class="dropdown-item" href="#" onclick="sortArrivals();">Newest Arrivals</a></li>
+            <li><a class="dropdown-item" href="#" onclick="sortPriceLowToHigh();">Price: Low to High</a></li>
+            <li><a class="dropdown-item" href="#" onclick="sortPriceHighToLow();">Price: High to Low</a></li>
         </ul>
     </div>
 </div>
@@ -113,7 +113,7 @@
 </script>
 <!--all sales-->
 <div class="small-container mt-5">
-    <div class="row">
+    <div id="viewproducts" class="row">
 
         <?php foreach($products as $product){?>
         <div onclick="window.location.href='/viewproduct/<?=$product['product_id']?>'" class="col-3">
@@ -157,5 +157,55 @@
         <p class="copyright"> Copyright 2021 - Internet Application Programming Project</p>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+<script>
+
+    function sortArrivals(){
+        <?php
+                $keys = array_column($products, 'created_at');
+                array_multisort($keys, SORT_DESC, $products);
+                ?>
+        var sorted = <?php echo json_encode($products) ?>;
+        console.log(sorted);
+        var products = "";
+        $.each(sorted, function(index, item){
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            products += product;
+        });
+        $('#viewproducts').html(products);
+
+    }
+    function sortPriceHighToLow(){
+        <?php
+        $keys = array_column($products, 'unit_price');
+        array_multisort($keys, SORT_DESC, $products);
+        ?>
+        var sorted = <?php echo json_encode($products) ?>;
+        console.log(sorted);
+        var products = "";
+        $.each(sorted, function(index, item){
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            products += product;
+        });
+        $('#viewproducts').html(products);
+    }
+    function sortPriceLowToHigh(){
+        <?php
+        $keys = array_column($products, 'unit_price');
+        array_multisort($keys, SORT_ASC, $products);
+        ?>
+        var sorted = <?php echo json_encode($products) ?>;
+        console.log(sorted);
+        var products = "";
+        $.each(sorted, function(index, item){
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            products += product;
+        });
+        $('#viewproducts').html(products);
+    }
+</script>
 </body>
+
 </html>
