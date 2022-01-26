@@ -27,7 +27,7 @@
             border-color: #badbcc;
         }
 
-        #form1{
+        .form1{
             width: 50px;
         }
 
@@ -138,8 +138,8 @@
                                                 <i class="fas fa-minus"></i>
                                             </button>
 
-                                            <input id="form1" min="0" name="quantity" value="<?=$order['qty']?>" type="number"
-                                                   class="form-control form-control-sm" size="50"/>
+                                            <input id="<?= $order['rowid']?>" min="1" name="quantity" value="<?=$order['qty']?>" type="number"
+                                                   class="form-control form-control-sm form1" size="50"/>
 
                                             <button class="btn btn-link px-2"
                                                     onclick="this.parentNode.querySelector('input[type=number]').stepUp(); changeQuantity('<?=$order['rowid']?>');">
@@ -201,8 +201,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
 <script>
     function changeQuantity(rowid){
-        console.log(document.getElementById('form1').value);
-        quantity = document.getElementById('form1').value;
+        quantity = document.getElementById(rowid).value;
         $.ajax({
             method: 'post',
             url: /changequantity/+rowid,
@@ -214,5 +213,4 @@
             }
         });
     }
-
 </script>
