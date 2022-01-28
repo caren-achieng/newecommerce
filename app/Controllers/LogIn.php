@@ -42,7 +42,6 @@ class LogIn extends Controller
                     'admin_url'=>'/admin'
                 ];
                 return json_encode($response);
-//                return redirect()->to('/index');
 
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');

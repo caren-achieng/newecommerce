@@ -29,8 +29,8 @@ class Customers extends BaseController
             $x++;
         }
         $products = new ProductsModel();
-        $data['products'] = $products->whereIn('subcategory_id', $subcategory_id)->paginate();
-        $data['pager'] = $products->pager;
+        $data['products'] = $products->whereIn('subcategory_id', $subcategory_id)->findAll();
+//        $data['pager'] = $products->pager;
         return view('client/customerproducts', $data);
 
     }

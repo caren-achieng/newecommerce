@@ -18,6 +18,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+
+    <style>
+        .size {
+            height: 500px;
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -116,12 +123,12 @@
 <div class="header">
     <div class="container">
         <div class="row">
-            <div class="col font">
+            <div class="col-6 font">
                 <h1>Classy is the original <br> Black and White!</h1>
                 <p class="col-2">Life is not always black and white, <br> but there's no harm in wearing it.</p>
                 <a href="" class="button btn-dark">EXPLORE NOW &#8594;</a>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <img class="size" src="/assets/images/dd.png" alt="classy-woman-in-hat">
             </div>
         </div>

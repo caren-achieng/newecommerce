@@ -171,7 +171,7 @@
         console.log(sorted);
         var products = "";
         $.each(sorted, function(index, item){
-            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span> Ksh '+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
             products += product;
         });
         $('#viewproducts').html(products);
@@ -186,7 +186,7 @@
         console.log(sorted);
         var products = "";
         $.each(sorted, function(index, item){
-            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span> Ksh '+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
             products += product;
         });
         $('#viewproducts').html(products);
@@ -200,7 +200,7 @@
         console.log(sorted);
         var products = "";
         $.each(sorted, function(index, item){
-            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span>'+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
+            var product = '<div class="col-3" onclick="window.location.href=\'/viewproduct/'+item.product_id+'\'"><img class="img-thumbnail" src="/products/'+item.product_image+'" alt=""> <br><br> <h4>'+item.product_name+'</h4> <div class="price"> <span> Ksh '+item.unit_price+'<br><br><button type="button" class="btn btn-dark" value="<?php echo ' ' ?>">View Product</button></span></div><br></div>';
             products += product;
         });
         $('#viewproducts').html(products);
