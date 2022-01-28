@@ -57,7 +57,6 @@ class Products extends BaseController
         if ($this->validate($rules))
         {
             //store user in DB
-
             $model = new ProductsModel();
 
             $newData = [
@@ -67,7 +66,7 @@ class Products extends BaseController
             'unit_price'=>$this->request->getVar('unit_price'),
             'available_quantity'=>$this->request->getVar('stock'),
             'subcategory_id'=> $this->request->getVar('subcategory_id'),
-            'added_by'=> 7
+            'added_by'=> session()->get('id')
             ];
 
             $model->save($newData);

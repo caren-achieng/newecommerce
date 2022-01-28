@@ -12,5 +12,4 @@ class ProductsModel extends Model{
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $allowedFields = ['product_name','product_description','product_image','unit_price','available_quantity','subcategory_id','created_at','updated_at','added_by','is_deleted'];
-
 }
