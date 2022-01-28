@@ -67,6 +67,7 @@ class Products extends BaseController
             'available_quantity'=>$this->request->getVar('stock'),
             'subcategory_id'=> $this->request->getVar('subcategory_id'),
             'added_by'=> session()->get('id')
+
             ];
 
             $model->save($newData);
