@@ -3,7 +3,6 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
-use App\Controllers\Categories;
 
 $routes = Services::routes();
 
@@ -35,18 +34,18 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // client routes
-$routes->get('/', 'LogIn::index');
+$routes->get('/', 'Login::index');
 $routes->get('/register', 'Users::index');
 $routes->post('/register','Users::store');
-$routes->post('/login','LogIn::loginAuth');
+$routes->post('/login','Login::loginAuth');
 $routes->get('/index', 'Home::index');
-$routes->get('/logout', 'LogIn::logout');
+$routes->get('/logout', 'Login::logout');
 
 //admin routes
-$routes->get('admin/login', 'LogIn::index');
+$routes->get('admin/login', 'Login::index');
 $routes->get('admin/register', 'Admin::register');
 $routes->post('admin/register','Admin::store');
-$routes->post('admin/login','LogIn::loginAuth');
+$routes->post('admin/login','Login::loginAuth');
 $routes->get('clients','Admin::clients');
 $routes->get('clients/edit/(:num)','Admin::edit/$1');
 $routes->get('clients/delete/(:num)','Admin::delete/$1');
@@ -80,8 +79,6 @@ $routes->post('products/update/(:num)','Products::update/$1');
 $routes->post('products/store','Products::store');
 $routes->get('/viewallproducts','Products::allproducts');
 
-
-
 //clients
 $routes->get('customerproducts','Customers::index');
 $routes->get('/allproducts/(:num)','Customers::getProducts/$1');
@@ -91,9 +88,6 @@ $routes->get('cart','Customers::viewCart');
 $routes->post('cart/add','Customers::addToCart');
 $routes->post('/changequantity/(:alphanum)','Customers::changeQuantity/$1');
 $routes->get('/deleteitem/(:alphanum)','Customers::deleteItem/$1');
-
-
-
 
 
 /*
@@ -112,3 +106,5 @@ $routes->get('/deleteitem/(:alphanum)','Customers::deleteItem/$1');
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+require_once ROOTPATH."/routes/api.php";

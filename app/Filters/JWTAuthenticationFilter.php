@@ -18,28 +18,21 @@ class JWTAuthenticationFilter implements FilterInterface
         $authenticationHeader = $request->getServer('HTTP_AUTHORIZATION');
 
         try {
-
             helper('jwt');
+
             $encodedToken = getJWTFromRequest($authenticationHeader);
             validateJWTFromRequest($encodedToken);
+
             return $request;
-
         } catch (Exception $e) {
-
             return Services::response()
-                ->setJSON(
-                    [
-                        'error' => $e->getMessage()
-                    ]
-                )
+                ->setJSON(['error' => $e->getMessage()])
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
 
         }
     }
 
-    public function after(RequestInterface $request,
-                          ResponseInterface $response,
-        $arguments = null)
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
     }
 }

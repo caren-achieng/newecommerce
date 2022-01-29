@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Controllers;
-use CodeIgniter\Controller;
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 
-class LogIn extends Controller
+class Login extends Controller
 {
     public function index()
     {

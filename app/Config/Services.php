@@ -30,7 +30,8 @@ class Services extends BaseService
      * }
      */
 
-    public static function getSecretKey(){
-        return getenv('JWT_SECRET_KEY');
+    public static function getSecretKey(): bool|array|string
+    {
+        return env('jwt.secret.key');
     }
 }
