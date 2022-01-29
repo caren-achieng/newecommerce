@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Models;
-use CodeIgniter\Model;
 
-class UserModel extends Model{
+use CodeIgniter\Model;
+use Exception;
+
+class UserModel extends Model
+{
 
     protected $table = 'tbl_users';
     protected $primaryKey = 'user_id';
@@ -26,9 +29,19 @@ class UserModel extends Model{
 
     protected function passwordHash(array $data)
     {
-        if(isset($data['data']['password']))
-            $data['data']['password'] = password_hash($data['data']['password'],PASSWORD_DEFAULT);
+        if(isset($data['data']['password'])) $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
         return $data;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function findUserByEmailAddress(string $emailAddress): object|array
+    {
+        $user = $this->asArray()->where(['email' => $emailAddress])->first();
+
+        if(!$user) throw new Exception('User does not exist for specified email address');
+
+        return $user;
+    }
 }
