@@ -114,5 +114,7 @@ class Customers extends BaseController
         $cart->remove($rowid);
         return redirect()->back();
     }
+
+
 }
 

@@ -88,6 +88,11 @@ $routes->get('cart','Customers::viewCart');
 $routes->post('cart/add','Customers::addToCart');
 $routes->post('/changequantity/(:alphanum)','Customers::changeQuantity/$1');
 $routes->get('/deleteitem/(:alphanum)','Customers::deleteItem/$1');
+//$routes->post('/cart','WalletController::topup');
+$routes->get('/checkout','WalletController::index');
+$routes->get('/ewallet','WalletController::wallet');
+$routes->post('/summary','WalletController::');
+
 
 
 /*

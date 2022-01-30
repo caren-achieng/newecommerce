@@ -161,6 +161,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 bg-grey">
                                 <div class="p-5">
                                     <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
@@ -185,8 +186,7 @@
                                         <h5><?= $cart->total()?></h5>
                                     </div>
 
-                                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                                            data-mdb-ripple-color="dark">CHECK OUT</button>
+                                    <button type="button" onclick="window.location.href='/checkout'" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">CHECK OUT</button>
                                 </div>
                             </div>
                         </div>
@@ -195,6 +195,7 @@
             </div>
         </div>
     </div>
+
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>

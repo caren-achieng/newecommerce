@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\UserModel;
+use App\Models\WalletModel;
 use CodeIgniter\Controller;
 
 class Login extends Controller
@@ -17,6 +18,7 @@ class Login extends Controller
         $session = session();
 
         $userModel = new UserModel();
+        $walletModel = new WalletModel();
 
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
@@ -31,6 +33,7 @@ class Login extends Controller
                     'id' => $data['user_id'],
                     'name' => $data['first_name'],
                     'email' => $data['email'],
+                    'wallet' => $walletModel->getWalletAtUser($data['user_id'])['amount_available'],
                     'isLoggedIn' => TRUE
                 ];
 
@@ -68,4 +71,5 @@ class Login extends Controller
         $session->destroy();
         return redirect()->to('/login');
     }
+
 }
