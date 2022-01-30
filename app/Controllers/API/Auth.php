@@ -5,7 +5,7 @@ namespace App\Controllers\API;
 use App\Controllers\BaseController;
 use App\Models\ApiUserModel;
 use App\Models\RoleModel;
-use App\Models\EwalletModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 use ReflectionException;
@@ -36,7 +36,7 @@ class Auth extends BaseController
         $input = $this->request->getVar();
         $input['role'] = (new RoleModel)->where('role_name', 'api_user')->first()['role_id'];
 
-        $userModel = new EwalletModel();
+        $userModel = new UserModel();
         $userModel->save($input);
 
 //        echo "<pre>"; print_r($userModel); die;
@@ -62,7 +62,7 @@ class Auth extends BaseController
             return $this->getResponse($this->validator->getErrors(), ResponseInterface::HTTP_BAD_REQUEST);
         }
 
-        $model = new EwalletModel();
+        $model = new UserModel();
         $user = $model->findUserByEmailAddress($input['email']);
 
         if(!password_verify($input['password'], $user['password'])) {
@@ -75,7 +75,7 @@ class Auth extends BaseController
     private function getJWTForUser(string $email, int $responseCode = ResponseInterface::HTTP_OK): ResponseInterface
     {
         try {
-            $model = new EwalletModel();
+            $model = new UserModel();
             $user = $model->findUserByEmailAddress($email);
 
             $apiUser = new ApiUserModel;

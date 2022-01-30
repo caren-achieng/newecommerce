@@ -19,8 +19,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<form action="" method="post" id="topup">
-    <div id="wallet_div" class="p-5 bg-secondary border rounded position-absolute top-50 start-50 translate-middle" >
+<form id="walletForm">
+    <div class="p-5 bg-secondary border rounded position-absolute top-50 start-50 translate-middle" >
         <div>
             <h6>Simulated ewallet topup.</h6><br><h6>Top up your wallet to purchase your items.</h6><br>
         </div>

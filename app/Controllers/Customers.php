@@ -115,6 +115,16 @@ class Customers extends BaseController
         return redirect()->back();
     }
 
+    public function viewSummary(){
+        $cart = \Config\Services::cart();
+        $category = new CategoryModel();
+        $subcategory = new SubcategoryModel();
+        $data['categories'] = $category->findAll();
+        $data['subcategories'] = $subcategory->findAll();
+        $subcategories = new SubcategoryModel();
+        $data['orders'] = $cart->contents();
+        return view('client/summary', $data);
+    }
 
 }
 

@@ -58,9 +58,9 @@ $routes->post('admins/update/(:num)','Admin::update/$1');
 //categories routes
 $routes->get('/categories','Categories::index');
 $routes->post('/categories','Categories::store');
-$routes->get('categories/edit/(:num)','Category::edit/$1');
-$routes->get('categories/delete/(:num)','Category::delete/$1');
-$routes->post('categories/update/(:num)','Category::update/$1');
+$routes->get('categories/edit/(:num)','Categories::edit/$1');
+$routes->get('categories/delete/(:num)','Categories::delete/$1');
+$routes->post('/categories/update/(:num)','Categories::update/$1');
 
 //subcategories routes
 $routes->get('/subcategories','Subcategories::index');
@@ -91,7 +91,7 @@ $routes->get('/deleteitem/(:alphanum)','Customers::deleteItem/$1');
 //$routes->post('/cart','WalletController::topup');
 $routes->get('/checkout','WalletController::index');
 $routes->get('/ewallet','WalletController::wallet');
-$routes->post('/summary','WalletController::');
+$routes->get('/summary','Customers::viewSummary');
 
 
 

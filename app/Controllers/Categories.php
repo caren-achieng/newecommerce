@@ -58,7 +58,7 @@ class Categories extends BaseController
         echo view('admin/css');
         echo view('admin/navtop');
         echo view('admin/navleft');
-        echo view('admin/edit',$data);
+        echo view('admin/editcat',$data);
         echo view('admin/footer');
         echo view('admin/htmlclose');
     }
@@ -67,10 +67,15 @@ class Categories extends BaseController
     {
         $categories = new CategoryModel();
         $data = [
-            'category_name'=>$this->request->getVar('category_name'),
+            'category_id'=>$id,
+            'category_name'=>$this->request->getVar('category'),
         ];
-        $categories->update($id,$data);
-        return redirect()->to(base_url('categories'))->with('status','Data Updated Successfully');
+        $categories->save($data);
+        $response = [
+            'status' => 'success',
+            'url'=>'/categories'
+        ];
+        return json_encode($response);
     }
 
     public function delete($id){

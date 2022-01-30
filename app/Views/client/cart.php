@@ -186,7 +186,7 @@
                                         <h5><?= $cart->total()?></h5>
                                     </div>
 
-                                    <button type="button" onclick="window.location.href='/checkout'" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">CHECK OUT</button>
+                                    <button type="button" onclick="window.location.href='/checkout'" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">PAYMENT</button>
                                 </div>
                             </div>
                         </div>

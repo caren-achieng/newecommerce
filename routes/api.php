@@ -11,3 +11,4 @@ $routes->get('/api/users', 'API\UserController::index');
 $routes->get('/api/users/(:num)', 'API\UserController::show/$1');
 
 $routes->get('/api/products', 'API\ProductController::index');
+$routes->get('/api/products/(:num)', 'API\ProductController::show/$1');

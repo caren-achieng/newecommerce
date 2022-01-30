@@ -14,4 +14,11 @@ class ProductController extends BaseController
 
         return $this->getResponse($products);
     }
+
+    public function show($id): ResponseInterface
+    {
+        $products = (new ProductsModel)->find($id);
+
+        return $this->getResponse($products);
+    }
 }

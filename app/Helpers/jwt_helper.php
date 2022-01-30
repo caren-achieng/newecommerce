@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\EwalletModel;
+use App\Models\UserModel;
 use Config\Services;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -26,7 +26,7 @@ function validateJWTFromRequest(string $encodedToken)
     try {
         $key = Services::getSecretKey();
         $decodedToken = JWT::decode($encodedToken, new Key($key, 'HS256'));
-        $userModel = new EwalletModel();
+        $userModel = new UserModel();
         $userModel->findUserByEmailAddress($decodedToken->email);
     } catch (Exception $err) {
         throw new Exception("Invalid access token!") ;

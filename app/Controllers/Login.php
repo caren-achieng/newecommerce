@@ -33,7 +33,7 @@ class Login extends Controller
                     'id' => $data['user_id'],
                     'name' => $data['first_name'],
                     'email' => $data['email'],
-                    'wallet' => $walletModel->getWalletAtUser($data['user_id'])['amount_available'],
+//                    'wallet' => $walletModel->getWalletAtUser($data['user_id'])['amount_available'],
                     'isLoggedIn' => TRUE
                 ];
 

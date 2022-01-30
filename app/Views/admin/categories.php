@@ -90,7 +90,7 @@
                                     <td><?= $row['category_id'] ?></td>
                                     <td><?= $row['category_name'] ?></td>
                                     <td>
-                                        <a href="<?= base_url('category/edit/'.$row['category_id'])?>" class="btn btn-success btn-sm">Edit</a>
+                                        <a href="<?= base_url('categories/edit/'.$row['category_id'])?>" class="btn btn-success btn-sm">Edit</a>
                                         <a href="<?= base_url('category/delete/'.$row['category_id'])?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
